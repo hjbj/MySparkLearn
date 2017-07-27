@@ -17,9 +17,13 @@ object GetDataBehaviorExampleExample {
     println(inRdd.collect().mkString(","))
 
     println("top(n) will get the top n data(if your data is in order,you can choose this way to display)")
-    inRdd.top(5).foreach(println)
+    inRdd.top(5).foreach(print)
 
     println("take(n) will get the n data from sub-partition as few as possible")
-    inRdd.take(5).foreach(println)
+    inRdd.take(5).foreach(print)
+
+    println("sample the data")
+    inRdd.takeSample(false,5,100).foreach(println)
+
   }
 }
