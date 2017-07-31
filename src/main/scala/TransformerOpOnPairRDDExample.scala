@@ -5,7 +5,7 @@
 import org.apache.spark.SparkContext
 import org.apache.spark.SparkConf
 
-object BehaviourOpOnPairRDDExample {
+object TransformerOpOnPairRDDExample {
   def main(args: Array[String]): Unit = {
     val sparkConf = new SparkConf().setMaster("local").setAppName("BehaviourOpOnPairRDDExample")
     val sc = new SparkContext(sparkConf)
@@ -13,6 +13,9 @@ object BehaviourOpOnPairRDDExample {
     // actions on a single pair RDD
     val pairRDD = sc.parallelize(List((1->2),(3->4),(3->6)))
     pairRDD.foreach(println)
+
+    val filterRDD = pairRDD.filter{case(k,v) => v>3}
+    filterRDD.foreach(println)
 
     val reduceRDD = pairRDD.reduceByKey((x,y) => (x+y))
     reduceRDD.foreach(println)
