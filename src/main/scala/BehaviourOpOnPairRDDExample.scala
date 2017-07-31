@@ -10,6 +10,7 @@ object BehaviourOpOnPairRDDExample {
     val sparkConf = new SparkConf().setMaster("local").setAppName("BehaviourOpOnPairRDDExample")
     val sc = new SparkContext(sparkConf)
 
+    // actions on a single pair RDD
     val pairRDD = sc.parallelize(List((1->2),(3->4),(3->6)))
     pairRDD.foreach(println)
 
@@ -37,5 +38,24 @@ object BehaviourOpOnPairRDDExample {
     val sortRDD = pairRDD.sortByKey(false)
     sortRDD.foreach(println)
 
+
+    // actions on two pair RDDs
+    val otherRDD = sc.parallelize(List((3->9)))
+
+    val subRDD = pairRDD.subtractByKey(otherRDD)
+    subRDD.foreach(println)
+
+    //inner join
+    val joinRDD = pairRDD.join(otherRDD)
+    joinRDD.foreach(println)
+
+    val leftJoinRDD = pairRDD.leftOuterJoin(otherRDD)
+    leftJoinRDD.foreach(println)
+
+    val rightJoinRDD = pairRDD.rightOuterJoin(otherRDD)
+    rightJoinRDD.foreach(println)
+
+    val cogRDD = pairRDD.cogroup(otherRDD)
+    cogRDD.foreach(println)
   }
 }
