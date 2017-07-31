@@ -1,0 +1,4 @@
+hello world
+this is a spark learning project
+this project is written by scala
+of course, you can use java or python instead
