@@ -3,7 +3,7 @@
   */
 import org.apache.spark.SparkContext
 import org.apache.spark.SparkConf
-object mapAndReduceToGetAveExample {
+object MapAndReduceToGetAveExample {
   def main(args: Array[String]): Unit = {
     val sparkConf = new SparkConf().setMaster("local").setAppName("mapAndReduceToGetAveExample")
     val sc = new SparkContext(sparkConf)
