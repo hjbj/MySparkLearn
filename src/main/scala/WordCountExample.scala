@@ -20,9 +20,14 @@ object WordCountExample {
 
     val wordsRDD = inFileRDD.flatMap(line => line.split(" "))
     val setWordInitNumRDD = wordsRDD.map(x => (x,1))
+
     val wordCounts = setWordInitNumRDD.reduceByKey((x,y) => x + y)
 
-    wordCounts.saveAsTextFile("../MyFirstSparkLearn/src/main/resources/someSentence_WordCountRs")
+    //wordCounts.saveAsTextFile("../MyFirstSparkLearn/src/main/resources/someSentence_WordCountRs")
+
+    //2. Another simple function to achieve the goal
+    wordsRDD.foreach(println)
+    wordsRDD.countByValue().foreach(println)
   }
 
 
