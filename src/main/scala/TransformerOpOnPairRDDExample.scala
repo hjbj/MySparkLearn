@@ -15,30 +15,38 @@ object TransformerOpOnPairRDDExample {
     pairRDD.foreach(println)
 
     val filterRDD = pairRDD.filter{case(k,v) => v>3}
+    println("filter-----------")
     filterRDD.foreach(println)
 
     val reduceRDD = pairRDD.reduceByKey((x,y) => (x+y))
+    println("reduce by key-----------")
     reduceRDD.foreach(println)
 
     val groupRDD = pairRDD.groupByKey
+    println("group by key-----------")
     groupRDD.foreach(println)
 
     val combineRDD = false
 
     val mapRDD = pairRDD.mapValues(x => x+1)
+    println("map values-----------")
     mapRDD.foreach(println)
 
     val flatMapRDD = pairRDD.flatMapValues((x => x to 5))
+    println("flat map-----------")
     flatMapRDD.foreach(println)
 
     val keyRDD = pairRDD.keys
+    println("list all keys-----------")
     keyRDD.foreach(println)
 
     val valueRDD = pairRDD.values
+    println("list all values-----------")
     valueRDD.foreach(println)
 
     // default is ascend order, using 'false' to change the order to descend
     val sortRDD = pairRDD.sortByKey(false)
+    println("sort by key-----------")
     sortRDD.foreach(println)
 
 
